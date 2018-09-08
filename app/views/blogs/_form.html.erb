@@ -1,24 +1,4 @@
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Progate</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <%= stylesheet_link_tag "book/form"%>
-</head>
-<body>
-  <header>
-    <div class="container">
-      <div class="header-left">
-         <p><a class="logo" href="/blogs/show">HOME</a></p>
-      </div>
-      <div class="header-right">
-        <p><a href="/blogs">一覧</a></p>
-        <p><a href="/blogs/new">新規投稿</a></p>
-      </div>
-        
-    </div>
-  </header>
+
      <div class="top-wrapper">
       <div class="container">
         <%= form_with(model: @blog, local: true ,url: choose_new_or_edit) do |form| %>
@@ -34,12 +14,12 @@
           <% end %>
     
           <div class="blog_title">
-            <%= form.label :"本文" %>
+            <%= form.label :"投稿内容" %>
             <%= form.text_field :content %>
           </div>
-          <%= form.submit  "投稿する" %>
+          <%= form.submit  "投稿する" , class: 'btn btn-success'%>
         <% end %>
-        <%= link_to "もどる", blogs_path %>
+        <%= link_to "もどる", blogs_path , class: 'btn btn-warning'%>
       </div>
     </div>
    
@@ -51,12 +31,4 @@
       </div>
     </div>
 
- <footer>
-    <div class="container">
-      <img src="/images/logo.png">
-    </div>
-  </footer>
-
-   <script src="script.js"></script>
-</body>
-</html>
+ 

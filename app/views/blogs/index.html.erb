@@ -1,39 +1,21 @@
 
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Progate</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-  <%= stylesheet_link_tag "book/index"%>
-</head>
-<body>
-  <header>
-    <div class="container">
-      <div class="header-left">
-         <p><a class="logo" href="/blogs/show">HOME</a></p>
-      </div>
-      <div class="header-right">
-        <p><a href="/blogs">一覧</a></p>
-        <p><a href="/blogs/new">新規投稿</a></p>
-      </div>
-        
-    </div>
-  </header>
+
    <div class="top-wrapper">
     <div class="container">
       <h1>投稿一覧</h1>
       <p><%= notice %></p>
 
       <table align="center" valign="top">
-          <% @blogs.each do |blog| %>
+        <% @blogs.each do |blog| %>
           <tr>
             <td><%= blog.content %></td>
-            <td><%= link_to "編集", edit_blog_path(blog.id)%></td>
-            <td><%= link_to '削除', blog_path(blog.id), method: :delete , data: { confirm: '本当に削除して宜しいいでしょうか？' }  %></td>
+            <td><%= link_to "編集", edit_blog_path(blog.id), class: 'btn btn-info'%></td>
+            <td><%= link_to '削除', blog_path(blog.id), method: :delete , data: { confirm: '本当に削除して宜しいいでしょうか？' }, class: 'btn btn-danger'  %></td>
           </tr>
         <% end %>
       </table>
+      
+      
 
     </div>
   </div>
@@ -45,15 +27,11 @@
         </div>
       </div>
     </div>
+ <script>
+    $("#methods-test2").click(function(){
+    $(this).button('dispose').removeAttr('data-toggle');
+  });
+  </script>
+
  
-  
-
- <footer>
-    <div class="container">
-      <img src="/images/logo.png">
-    </div>
-  </footer>
-
-   <script src="script.js"></script>
-</body>
-</html>
+ 

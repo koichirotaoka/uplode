@@ -4,5 +4,5 @@ Rails.application.routes.draw do
       post :confirm
     end
   end
-  root 'blogs#index'
+  root 'blogs#show'
 end
