@@ -4,13 +4,14 @@
     <div class="container">
       <h1>投稿一覧</h1>
       <p><%= notice %></p>
-
-      <table align="center" valign="top">
+      <table class="container"　align="center" valign="top"　>
         <% @blogs.each do |blog| %>
-          <tr>
-            <td><%= blog.content %></td>
-            <td><%= link_to "編集", edit_blog_path(blog.id), class: 'btn btn-info'%></td>
-            <td><%= link_to '削除', blog_path(blog.id), method: :delete , data: { confirm: '本当に削除して宜しいいでしょうか？' }, class: 'btn btn-danger'  %></td>
+          <tr class="row col-xs-12 col-md-6" align="center" valign="top">
+            <td>
+              <h3>本文：<%= blog.content %></h3><br>
+              <%= link_to "編集", edit_blog_path(blog.id), class: 'btn btn-info'%>
+              <%= link_to '削除', blog_path(blog.id), method: :delete , data: { confirm: '本当に削除して宜しいいでしょうか？' }, class: 'btn btn-danger'%>
+            </td>
           </tr>
         <% end %>
       </table>
