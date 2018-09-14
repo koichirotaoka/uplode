@@ -31,8 +31,21 @@
         </nav>
       </div>
     </header>
-  
-  <%= yield %>
+    
+    <body>
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "#{key}") %>
+      <% end %>
+     
+      <% if logged_in? %>
+        <%= link_to "Logout", session_path(current_user.id), method: :delete, class: "btn btn-primary"%>
+      <% else %>
+        <%= link_to "Sign up", new_user_path, class: "btn btn-primary"%>
+        <%= link_to "Login", new_session_path, class: "btn btn-primary" %>
+      <% end %>
+
+      <%= yield %>
+    </body>
   
     <footer class="alert alert-success">
       <p>運営会社DIVE INTO CODE株式会社</p>

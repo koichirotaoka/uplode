@@ -1,4 +1,7 @@
 class BlogsController < ApplicationController
+  before_action :set_blog, only: [:edit, :update, :destroy]
+  before_action :login_ck, only: [:index, :new, :confirm, :edit, :show, :destroy]
+  
   def index
     @blogs = Blog.all
   end
@@ -10,6 +13,7 @@ class BlogsController < ApplicationController
       @blog = Blog.new
     end
   end
+
     
   def create
     @blog = Blog.new(blog_params)
@@ -26,7 +30,6 @@ class BlogsController < ApplicationController
     redirect_to blogs_path, notice:"投稿を削除しました！"
   end
   
-  
   def edit
     @blog = Blog.find(params[:id])
   end
@@ -40,7 +43,6 @@ class BlogsController < ApplicationController
     end
   end
   
-  
   def confirm
     @blog = Blog.new(blog_params)
     render :new if @blog.invalid?
@@ -52,7 +54,16 @@ class BlogsController < ApplicationController
     params.require(:blog).permit(:content)
   end
   
+  def set_blog
+    @blog = Blog.find(params[:id])
+  end
   
-    
-    
+  #ログインチェック
+  def login_ck
+    unless current_user
+      flash[:notice] = '失敗しました'
+      render new_session_path
+    end
+  end
+
 end
