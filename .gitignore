@@ -18,6 +18,7 @@
 /yarn-error.log
 
 .byebug_history
+.env
 =======
 ##省略
 
