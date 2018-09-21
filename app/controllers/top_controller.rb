@@ -1,4 +1,4 @@
-class TopsController < ApplicationController
+class TopController < ApplicationController
   before_action :login_ck, only: [:index]
   
   def index

@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
-  before_action :set_blog, only: [:edit, :update, :destroy]
-  before_action :login_ck, only: [:index, :new, :confirm, :edit, :show, :destroy]
+  before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :login_ck, only: [:new, :edit, :show, :destroy]
   
   def index
     @blogs = Blog.all
@@ -13,10 +13,14 @@ class BlogsController < ApplicationController
       @blog = Blog.new
     end
   end
+  
+  def show
+    @favorite = current_user.favorites.find_by(blog_id: @blog.id)
+  end
 
-    
   def create
     @blog = Blog.new(blog_params)
+    @blog.user_id = current_user.id 
     if @blog.save
       redirect_to blogs_path
     else
@@ -24,8 +28,13 @@ class BlogsController < ApplicationController
     end
   end
   
+  def confirm
+    @blog = Blog.new(blog_params)
+    @blog.user_id = current_user.id
+    render :new if @blog.invalid?
+  end
+  
   def destroy
-    @blog = Blog.find(params[:id])
     @blog.destroy
     redirect_to blogs_path, notice:"投稿を削除しました！"
   end
@@ -41,11 +50,6 @@ class BlogsController < ApplicationController
     else
       render 'edit'
     end
-  end
-  
-  def confirm
-    @blog = Blog.new(blog_params)
-    render :new if @blog.invalid?
   end
   
   private

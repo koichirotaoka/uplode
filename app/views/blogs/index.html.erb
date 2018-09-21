@@ -1,38 +1,29 @@
 
-
-   <div class="top-wrapper">
+ <div class="top-wrapper">
     <div class="container">
       <h1>投稿一覧</h1>
       <p><%= notice %></p>
-      <table class="container"　align="center" valign="top"　>
         <% @blogs.each do |blog| %>
-          <tr class="row col-xs-12 col-md-6" align="center" valign="top">
-            <td>
-              <h3>本文：<%= blog.content %></h3><br>
-              <%= link_to "編集", edit_blog_path(blog.id), class: 'btn btn-info'%>
-              <%= link_to '削除', blog_path(blog.id), method: :delete , data: { confirm: '本当に削除して宜しいいでしょうか？' }, class: 'btn btn-danger'%>
-            </td>
-          </tr>
-        <% end %>
-      </table>
-      
-      
-
+          <div class="col-xs-12 col-md-6 blog-panel" align="center" valign="top">
+            <p><span><%= blog.content %></span></p>
+            <div class="blog-links">
+              <%= link_to '詳細', blog_path(blog.id), class: 'btn btn-success' %>
+              <% if logged_in? %>
+                <% if blog.user_id == current_user.id %>
+                  <%= link_to '編集', edit_blog_path(blog.id), class: 'btn btn-warning' %>
+                  <%= link_to '削除', blog_path(blog.id), method: :delete ,data: { confirm: '本当に削除して宜しいいでしょうか？' }, class: 'btn btn-danger' %>
+                <% else %>
+                  投稿者以外は操作出来ません
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>  
     </div>
   </div>
-  
   <div class="message-wrapper">
-      <div class="container">
-        <div class="heading">
-        
-        </div>
+    <div class="container">
+      <div class="heading">
       </div>
     </div>
- <script>
-    $("#methods-test2").click(function(){
-    $(this).button('dispose').removeAttr('data-toggle');
-  });
-  </script>
-
- 
- 
+  </div>
