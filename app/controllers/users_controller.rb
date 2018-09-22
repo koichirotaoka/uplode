@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :login_ck, only: [:new, :show]
   def index
     @users =User.all
   end
@@ -30,6 +31,14 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password,
                                  :password_confirmation)
+  end
+  
+  #ログインチェック
+  def login_ck
+    unless current_user
+      flash[:notice] = '失敗しました'
+      render new_session_path
+    end
   end
   
 end
