@@ -1,6 +1,8 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   before_action :login_ck, only: [:index, :new, :edit, :show, :destroy]
+  before_action :login_ck2, only: [:edit, :destroy]
+  
   def index
     @blogs = Blog.all
   end
@@ -35,22 +37,11 @@ class BlogsController < ApplicationController
   
   def destroy
     @blog.destroy
-    unless @blog.user_id==current_user.id
-    binding.pry
-      flash[:notice] = '失敗しました'
-      render new_session_path
-    else
-      redirect_to blogs_path, notice:"投稿を削除しました！"
-    end
+    redirect_to blogs_path, notice:"投稿を削除しました！"
   end
   
   def edit
     @blog = Blog.find(params[:id])
-    unless @blog.user_id==current_user.id
-    binding.pry
-      flash[:notice] = '失敗しました'
-      render new_session_path
-    end
   end
   
   def update
@@ -75,6 +66,14 @@ class BlogsController < ApplicationController
   #ログインチェック
   def login_ck
     unless current_user
+      flash[:notice] = '失敗しました'
+      render new_session_path
+    end
+  end
+  
+  def login_ck2
+    unless @blog.user_id==current_user.id
+      binding.pry
       flash[:notice] = '失敗しました'
       render new_session_path
     end
