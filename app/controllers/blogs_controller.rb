@@ -36,6 +36,7 @@ class BlogsController < ApplicationController
   def destroy
     @blog.destroy
     unless @blog.user_id==current_user.id
+    binding.pry
       flash[:notice] = '失敗しました'
       render new_session_path
     else
@@ -45,7 +46,8 @@ class BlogsController < ApplicationController
   
   def edit
     @blog = Blog.find(params[:id])
-    unless @blog.user_id==current_user.id 
+    unless @blog.user_id==current_user.id
+    binding.pry
       flash[:notice] = '失敗しました'
       render new_session_path
     end
