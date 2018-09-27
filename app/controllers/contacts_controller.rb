@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
-
+  before_action :login_ck, only: [:index, :new, :edit, :show, :destroy]
   # GET /contacts
   # GET /contacts.json
   def index
@@ -25,7 +25,6 @@ class ContactsController < ApplicationController
   # POST /contacts.json
   def create
     @contact = Contact.new(contact_params)
-
     respond_to do |format|
       if @contact.save
         ContactMailer.contact_mail(@contact).deliver  ##追記
@@ -72,4 +71,12 @@ class ContactsController < ApplicationController
     def contact_params
       params.require(:contact).permit(:name, :email, :content)
     end
+    
+    def login_ck
+      unless current_user
+        flash[:notice] = '失敗しました'
+        render new_session_path
+      end
+    end
 end
+

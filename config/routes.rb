@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  resources :contacts
-  get 'contacts/new'
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
-  
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
   get "/users/favorites/:id" => "users#favorites"
@@ -14,4 +10,9 @@ Rails.application.routes.draw do
   get 'top/index'
   resources :top
   resources :favorites, only: [:create, :destroy]
+  resources :contacts, only: [:new, :create]
+  
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end
