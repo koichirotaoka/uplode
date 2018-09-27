@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   get 'contacts/new'
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   
-  root 'blogs#index'
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
   get "/users/favorites/:id" => "users#favorites"
