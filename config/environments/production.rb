@@ -90,12 +90,12 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   
   # 追記
-  config.action_mailer.default_url_options = { host: 'murmuring-brushlands-72339' }
+  config.action_mailer.default_url_options = { host: 'murmuring-brushlands-72339.herokuapp.com' }
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     user_name: ENV['SENDGRID_USERNAME'],
     password: ENV['SENDGRID_PASSWORD'],
-    domain: "herokuapp.com",
+    domain: "heroku.com",
     address: "smtp.SendGrid.net",
     port: 587,
     authentication: :plain,
