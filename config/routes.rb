@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'blogs#index'
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
   get "/users/favorites/:id" => "users#favorites"
