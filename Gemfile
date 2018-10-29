@@ -53,8 +53,14 @@ group :development do
   
   gem 'letter_opener_web'
   
+  gem 'carrierwave', '~> 1.0'
+  gem 'mini_magick', '~> 4.5', '>= 4.5.1'
+
+  
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jquery-rails'
+
+gem 'faker'

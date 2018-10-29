@@ -1,31 +1,32 @@
+<div class="top-wrapper">
+  <div class="container">
+    <h3>以下の内容で、投稿しますか？</h3>
 
+    <%= form_with(model: @blog, url: blogs_path, local: true, method: 'post') do |form| %>
+      <%= form.hidden_field :content %>
+      <p>本文:<%= @blog.content %></p>
+      <!-- 確認画面でアップロードした画像を表示させるための記述 -->
+      <%= image_tag(@blog.image.url) %>
+      <%= form.hidden_field :image_cache %><br>
+      <%= form.submit  "投稿する", class: 'btn btn-success' %>
+    <% end %>
+    
+    <%= form_with(model: @blog, url: new_blog_path, local: true, method: 'get') do |form| %>
+      <%= form.hidden_field :content %>
+      <%= form.hidden_field :image_cache %>
+      <%= form.submit "もどる", name: 'back', class: 'btn btn-warning'%>
+    <% end %>
+    
+  </div>
+</div>
 
   
-  <div class="top-wrapper">
-    <div class="container">
-      <h3>以下の内容で、投稿しますか？</h3>
-
-        <%= form_with(model: @blog, url: blogs_path, local: true, method: 'post') do |form| %>
-          <%= form.hidden_field :content %>
-        
-          <p>本文:<%= @blog.content %></p>
-          <%= form.submit  "投稿する", class: 'btn btn-success' %>
-        <% end %>
-        
-        <%= form_with(model: @blog, url: new_blog_path, local: true, method: 'get') do |form| %>
-          <%= form.hidden_field :content %>
-         <%= form.submit "もどる", name: 'back', class: 'btn btn-warning'%>
-        <% end %>
+<div class="message-wrapper">
+  <div class="container">
+    <div class="heading">
     </div>
   </div>
-  
-   <div class="message-wrapper">
-      <div class="container">
-        <div class="heading">
-        
-        </div>
-      </div>
-    </div>
+</div>
  
 
  

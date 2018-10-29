@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Feeds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody align="center">
+    <% @feeds.each do |feed| %>
+      <tr>
+        <td><%= image_tag feed.image %></td>
+        <td><%= link_to '詳細', feed, class: 'btn btn-success' %></td>
+        <td><%= link_to '編集', edit_feed_path(feed), class: 'btn btn-warning' %></td>
+        <td><%= link_to '削除', feed, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Feed', new_feed_path %>

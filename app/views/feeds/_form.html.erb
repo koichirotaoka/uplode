@@ -1,0 +1,14 @@
+<%= form_with(model: feed, local: true, url:choose_new_or_edit) do |form| %>
+
+  <div class="field" align="center">
+    <%= form.label :image %>
+    <!-- 確認画面から新規作成画面に戻った時に、 -->
+    <!-- アップロードした画像を表示させるための記述 -->
+    <%= image_tag(@feed.image.url) if @feed.image.url %>
+    <%= form.file_field :image %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
