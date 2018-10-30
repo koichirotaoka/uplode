@@ -54,4 +54,7 @@ Rails.application.configure do
   
   config.action_mailer.default_url_options = { host: 'localhost:3000（mailerkadai-koichirotaoka.c9users.io)' }
   config.action_mailer.delivery_method = :letter_opener
+  
+  config.root = Rails.root.join('tmp')
+  config.cache_dir = "#{Rails.root}/tmp/uploads"
 end
