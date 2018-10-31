@@ -103,4 +103,3 @@ Rails.application.configure do
   }
 end
 
-  config.serve_static_assets = false
